@@ -1,0 +1,39 @@
+<?php
+include ("connectdb.php");
+$mmedi1 =$_REQUEST["mmedi1"];
+$mmedi2 =$_REQUEST["mmedi2"];	
+$mmedi3 =$_REQUEST["mmedi3"];
+$ini =$_REQUEST["ini"];
+
+//mysqli_select_db($conn,$database);	
+if ($mmedi1 == null){
+	$mmedi1 = 0;
+}
+if ($mmedi2 == null){
+	$mmedi2 = 0;
+}
+if ($mmedi3 == null){
+	$mmedi3 = 0;
+}
+if ($ini == null){
+	$ini = 1;
+}
+$sql ="UPDATE `manual` SET `mmedi1`=$mmedi1,`mmedi2`=$mmedi2,`mmedi3`=$mmedi3,`ini`=$ini";
+//mysqli_query($conn,$sql);
+echo $mmedi1;
+echo $mmedi2;
+echo $mmedi3;
+echo $ini;
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+	sleep(1);
+	$sql ="UPDATE `manual` SET `mmedi1`='0',`mmedi2`='0',`mmedi3`='0',`ini`='1'";
+	mysqli_query($conn,$sql);
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}	
+
+?>
+
+
+<!--<meta http-equiv="refresh" content="0;url=index.php">

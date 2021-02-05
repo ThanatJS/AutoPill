@@ -1,0 +1,41 @@
+
+
+<?php
+include ("connectdb.php");
+$amedi1 =$_REQUEST["amedi1"];
+$amedi2 =$_REQUEST["amedi2"];	
+$amedi3 =$_REQUEST["amedi3"];
+$timepick =$_REQUEST["timepick"];
+
+$date = new DateTime($timepick);
+$newtimepick = $date->format('Y-d-m H:i:s');
+
+//mysqli_select_db($conn,$database);	
+if ($amedi1 == null){
+	$amedi1 = 0;
+}
+if ($amedi2 == null){
+	$amedi2 = 0;
+}
+if ($amedi3 == null){
+	$amedi3 = 0;
+}
+if ($timepick == null){
+	$timepick = 0;
+}
+$sql ="INSERT INTO `auto` (`amedi1`, `amedi2`, `amedi3`, `timepick`) VALUES ('$amedi1', '$amedi2', '$amedi3', '$newtimepick')";
+//mysqli_query($conn,$sql);
+echo $amedi1;
+echo $amedi2;
+echo $amedi3;
+echo $newtimepick;
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}	
+
+?>
+
+<meta http-equiv="refresh" content="0;url=index.php">

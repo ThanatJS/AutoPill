@@ -1,0 +1,12 @@
+<?PHP
+	$id = $_GET['id'];  
+	
+	include("connect.php");
+
+	$sql = "DELETE FROM `member` WHERE  `id`	= '$id'";
+	mysqli_query($conn,$sql) or die("error=$sql");
+
+	mysqli_close($conn);
+
+	echo "<script>window.location='edit.php';</script>";
+?>
